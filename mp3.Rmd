@@ -1,0 +1,44 @@
+---
+title: "Mini Project 3"
+author: "Emily Kim, Dasom An, Janell Lin"
+date: "4/8/2018"
+output: html_document
+---
+
+```{r}
+
+library(tidyverse)
+
+library(macleish)
+
+library(sf)
+macleish_layers[["buildings"]]
+
+lapply(macleish_layers, class)
+
+macleish_layers[["buildings"]] %>%
+  plot()
+
+trails <- macleish_layers[["trails"]] %>%
+  mutate(computed_length = st_length(geometry))
+
+macleish_layers[["trails"]]
+
+head(trails)
+
+plot(macleish_layers[["trails"]])
+
+
+trails_1<- trails %>%
+  group_by(name) %>%
+  summarize(num_segments = n(), 
+            total_length = sum(computed_length)) %>%
+  arrange(desc(total_length))
+View (trails)
+
+
+```
+
+
+
+
