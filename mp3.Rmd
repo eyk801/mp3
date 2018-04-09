@@ -28,6 +28,8 @@ head(trails)
 
 plot(macleish_layers[["trails"]])
 
+macleish_layers[["landmarks"]]
+plot(macleish_layers[["landmarks"]])
 
 trails_1<- trails %>%
   group_by(name) %>%
@@ -40,5 +42,23 @@ View (trails)
 ```
 
 
+```{r}
+
+#elevation
+
+elevation <- st_read("CONTOURS250K_ARC.shp")
 
 
+
+```
+
+Data for elevation:
+http://maps-massgis.opendata.arcgis.com/datasets/84ecbf026489446c8562df038c352772_0
+http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip
+```{r}
+##source data
+url <- "http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip"
+local_file <- basename(url)
+download.file(url, destfile = local_file)
+unzip(local_file, exdir = "elevation")
+```
