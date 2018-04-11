@@ -6,18 +6,9 @@ output: html_document
 ---
 
 ```{r}
-
 library(tidyverse)
-
 library(macleish)
-
 library(sf)
-macleish_layers[["buildings"]]
-
-lapply(macleish_layers, class)
-
-macleish_layers[["buildings"]] %>%
-  plot()
 
 trails <- macleish_layers[["trails"]] %>%
   mutate(computed_length = st_length(geometry))
@@ -28,27 +19,19 @@ head(trails)
 
 plot(macleish_layers[["trails"]])
 
-macleish_layers[["landmarks"]]
-plot(macleish_layers[["landmarks"]])
-
 trails_1<- trails %>%
   group_by(name) %>%
   summarize(num_segments = n(), 
             total_length = sum(computed_length)) %>%
   arrange(desc(total_length))
 View (trails)
-
-
 ```
 
 
 ```{r}
 
 #elevation
-
 elevation <- st_read("CONTOURS250K_ARC.shp")
-
-
 
 ```
 
@@ -62,3 +45,21 @@ local_file <- basename(url)
 download.file(url, destfile = local_file)
 unzip(local_file, exdir = "elevation")
 ```
+
+```{r}
+dim(elevation)
+packageVersion("macleish")
+names(macleish_layers)
+```
+
+
+
+
+
+
+
+
+
+
+
+
