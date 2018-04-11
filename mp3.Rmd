@@ -8,7 +8,7 @@ output: html_document
 ```{r}
 
 #Install macleish
-#devtools::install_github("beanumber/macleish")
+devtools::install_github("beanumber/macleish")
 
 
 library(tidyverse)
@@ -53,11 +53,11 @@ View (trails)
 
 library(macleish)
 packageVersion("macleish")
-
+library(sp)
 names(macleish_layers)
 
 library(sf)
-contours <- st_read("CONTOURS250K_ARC.shp")
+elevation <- st_read("CONTOURS250K_ARC.shp")
 
 #streams_inside <- macleish_layers[["boundary"]] %>%
 #  st_intersection(macleish_layers[["streams"]])
