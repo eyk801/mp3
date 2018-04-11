@@ -1,4 +1,4 @@
----
+dplyr---
 title: "Mini Project 3"
 author: "Emily Kim, Dasom An, Janell Lin"
 date: "4/8/2018"
@@ -7,9 +7,14 @@ output: html_document
 
 ```{r}
 
-library(tidyverse)
+#Install macleish
+#devtools::install_github("beanumber/macleish")
 
+
+library(tidyverse)
 library(macleish)
+
+library (dplyr)
 
 library(sf)
 macleish_layers[["buildings"]]
@@ -46,7 +51,13 @@ View (trails)
 
 #elevation
 
-elevation <- st_read("CONTOURS250K_ARC.shp")
+library(macleish)
+packageVersion("macleish")
+
+names(macleish_layers)
+
+library(sf)
+contours <- st_read("CONTOURS250K_ARC.shp")
 
 #streams_inside <- macleish_layers[["boundary"]] %>%
 #  st_intersection(macleish_layers[["streams"]])
@@ -71,5 +82,10 @@ http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip
 url <- "http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip"
 local_file <- basename(url)
 download.file(url, destfile = local_file)
-unzip(local_file, exdir = "elevation")
+unzip(local_file, exdir = "contours250k")
 ```
+
+```{r fig.show="hold", fig.width=3}
+#put all the figures together
+```
+
