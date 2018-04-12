@@ -7,6 +7,7 @@ output: html_document
 
 ```{r}
 <<<<<<< HEAD
+<<<<<<< HEAD
 library(tidyverse)
 library(macleish)
 =======
@@ -14,14 +15,24 @@ library(macleish)
 #Install macleish
 #devtools::install_github("beanumber/macleish")
 
+=======
+# Install macleish
+devtools::install_github("beanumber/macleish")
+>>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
 
 library(tidyverse)
 library(macleish)
-
 library (dplyr)
+<<<<<<< HEAD
 
 >>>>>>> ca8071ab7d9b03cb0d8859eb10adfe7e84ab723b
 library(sf)
+=======
+library(sf)
+```
+
+```{r}
+>>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
 
 trails <- macleish_layers[["trails"]] %>%
   mutate(computed_length = st_length(geometry))
@@ -37,7 +48,12 @@ trails_1<- trails %>%
   summarize(num_segments = n(), 
             total_length = sum(computed_length)) %>%
   arrange(desc(total_length))
+<<<<<<< HEAD
 View (trails)
+=======
+View(trails)
+
+>>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
 ```
 
 
@@ -48,13 +64,13 @@ elevation <- st_read("CONTOURS250K_ARC.shp")
 
 =======
 
-library(macleish)
-packageVersion("macleish")
+#library(macleish)
+#packageVersion("macleish")
 
-names(macleish_layers)
+#names(macleish_layers)
 
-library(sf)
-contours <- st_read("CONTOURS250K_ARC.shp")
+#library(sf)
+#contours <- st_read("CONTOURS250K_ARC.shp")
 
 #streams_inside <- macleish_layers[["boundary"]] %>%
 #  st_intersection(macleish_layers[["streams"]])
@@ -62,13 +78,18 @@ contours <- st_read("CONTOURS250K_ARC.shp")
 st_crs(elevation)
 st_crs(trails)
 
-library (sf)
+#library(sf)
 
+<<<<<<< HEAD
+=======
+library(raster)
+>>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
 the_crs <- crs(trails, asText = TRUE)
 elevation_crs <- st_transform(trails, crs = the_crs)
 
 ```
 
+<<<<<<< HEAD
 Data for elevation:
 http://maps-massgis.opendata.arcgis.com/datasets/84ecbf026489446c8562df038c352772_0
 http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip
@@ -101,6 +122,8 @@ names(macleish_layers)
 =======
 unzip(local_file, exdir = "contours250k")
 ```
+=======
+>>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
 
 ```{r fig.show="hold", fig.width=3}
 #put all the figures together
