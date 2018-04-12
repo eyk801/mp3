@@ -7,16 +7,18 @@ output: html_document
 
 ```{r}
 
-#Install macleish
+
+# Install macleish
 devtools::install_github("beanumber/macleish")
 
 
 library(tidyverse)
 library(macleish)
-
 library (dplyr)
-
 library(sf)
+```
+
+```{r}
 macleish_layers[["buildings"]]
 
 lapply(macleish_layers, class)
@@ -41,9 +43,10 @@ trails_1<- trails %>%
   summarize(num_segments = n(), 
             total_length = sum(computed_length)) %>%
   arrange(desc(total_length))
-View (trails)
+View(trails)
 
 
+contours <- macleish_layers[["contours_3m"]] 
 ```
 
 
@@ -65,9 +68,9 @@ elevation <- st_read("CONTOURS250K_ARC.shp")
 st_crs(elevation)
 st_crs(trails)
 
-library (sf)
+library(sf)
 
-library (raster)
+library(raster)
 the_crs <- crs(trails, asText = TRUE)
 
 elevation_crs <- st_transform(trails, crs = the_crs)
