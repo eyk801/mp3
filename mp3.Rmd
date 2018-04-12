@@ -1,4 +1,4 @@
----
+dplyr---
 title: "Mini Project 3"
 author: "Emily Kim, Dasom An, Janell Lin"
 date: "4/8/2018"
@@ -6,8 +6,21 @@ output: html_document
 ---
 
 ```{r}
+<<<<<<< HEAD
 library(tidyverse)
 library(macleish)
+=======
+
+#Install macleish
+#devtools::install_github("beanumber/macleish")
+
+
+library(tidyverse)
+library(macleish)
+
+library (dplyr)
+
+>>>>>>> ca8071ab7d9b03cb0d8859eb10adfe7e84ab723b
 library(sf)
 
 trails <- macleish_layers[["trails"]] %>%
@@ -33,6 +46,27 @@ View (trails)
 #elevation
 elevation <- st_read("CONTOURS250K_ARC.shp")
 
+=======
+
+library(macleish)
+packageVersion("macleish")
+
+names(macleish_layers)
+
+library(sf)
+contours <- st_read("CONTOURS250K_ARC.shp")
+
+#streams_inside <- macleish_layers[["boundary"]] %>%
+#  st_intersection(macleish_layers[["streams"]])
+
+st_crs(elevation)
+st_crs(trails)
+
+library (sf)
+
+the_crs <- crs(trails, asText = TRUE)
+elevation_crs <- st_transform(trails, crs = the_crs)
+
 ```
 
 Data for elevation:
@@ -43,6 +77,7 @@ http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip
 url <- "http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip"
 local_file <- basename(url)
 download.file(url, destfile = local_file)
+<<<<<<< HEAD
 unzip(local_file, exdir = "elevation")
 ```
 
@@ -63,3 +98,12 @@ names(macleish_layers)
 
 
 
+=======
+unzip(local_file, exdir = "contours250k")
+```
+
+```{r fig.show="hold", fig.width=3}
+#put all the figures together
+```
+
+>>>>>>> ca8071ab7d9b03cb0d8859eb10adfe7e84ab723b
