@@ -29,6 +29,7 @@ library (dplyr)
 library(sf)
 =======
 library(sf)
+library(lwgeom)
 ```
 
 ```{r}
@@ -59,22 +60,32 @@ View(trails)
 
 ```{r}
 
+<<<<<<< HEAD
 #elevation
 elevation <- st_read("CONTOURS250K_ARC.shp")
 
 =======
+=======
+names(macleish_layers)
+>>>>>>> 64c3bb02d8878e34e88729efc2dc0846c5bfbb73
 
-#library(macleish)
-#packageVersion("macleish")
+contours <- macleish_layers[["contours_3m"]] %>%
+  dplyr::select(ELEV_M, ELEV_FT, INDEX_ARC, SHAPE_LEN, geometry)
 
-#names(macleish_layers)
+elevation_trail_xings <- macleish_layers[["trails"]] %>%
+  st_intersection(macleish_layers[["contours_3m"]]) %>%
+  dplyr::select(ELEV_M, ELEV_FT, INDEX_ARC, SHAPE_LEN, geometry, name, color) %>%
+  dplyr::group_by(name) %>%
+  dplyr::summarise(max = max(ELEV_FT), min = min(ELEV_FT), n = n()) %>%
+  dplyr::mutate(difference = max - min)
+  
 
-#library(sf)
-#contours <- st_read("CONTOURS250K_ARC.shp")
+#the_crs <- crs(trails, asText = TRUE)
 
-#streams_inside <- macleish_layers[["boundary"]] %>%
-#  st_intersection(macleish_layers[["streams"]])
+#st_crs(elevation)
+#st_crs(trails)
 
+<<<<<<< HEAD
 st_crs(elevation)
 st_crs(trails)
 
@@ -86,6 +97,9 @@ library(raster)
 >>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
 the_crs <- crs(trails, asText = TRUE)
 elevation_crs <- st_transform(trails, crs = the_crs)
+=======
+#View(contours)
+>>>>>>> 64c3bb02d8878e34e88729efc2dc0846c5bfbb73
 
 ```
 
