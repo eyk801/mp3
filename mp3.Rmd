@@ -2,8 +2,9 @@
 title: "Mini Project 3"
 author: "Emily Kim, Dasom An, Janell Lin"
 date: "4/16/2018"
-output: html_document:
-  code_folding: hide
+output: 
+  html_document:
+    code_folding: hide
 ---
 
 ```{r}
@@ -69,7 +70,6 @@ leaflet()%>%
   addMarkers(data = macleish_layers[["landmarks"]],
              popup = ~ Label, group = "Structures")%>%
   addPolylines(data = contours, weight = 1, fillOpacity = 0.1, color = ~pal(ELEV_M))
-
 
 ```
 
