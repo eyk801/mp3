@@ -7,7 +7,7 @@ output:
   code_folding: hide
 ---
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 devtools::install_github("beanumber/macleish")
 library(tidyverse)
 library(macleish)
@@ -18,7 +18,7 @@ library(leaflet)
 require(leaflet)
 ```
 
-```{r}
+```{r, warning=FALSE}
 trails <- macleish_layers[["trails"]] %>%
   mutate(computed_length = st_length(geometry))
 macleish_layers[["trails"]]
@@ -40,7 +40,7 @@ inner_join(difficulty_rating, by = "name")
 
 ```
 
-```{r}
+```{r, message = FALSE, warning=FALSE}
 contours <- macleish_layers[["contours_3m"]] %>%
   dplyr::select(ELEV_M, ELEV_FT, INDEX_ARC, SHAPE_LEN, geometry)
 
@@ -52,7 +52,7 @@ elevation_trail_xings <- macleish_layers[["trails"]] %>%
   dplyr::mutate(difference = max - min)
 ```
 
-```{r}
+```{r, message = FALSE, warning=FALSE}
 landmarks<- macleish_layers[["landmarks"]]
 
 pal <- colorNumeric(
