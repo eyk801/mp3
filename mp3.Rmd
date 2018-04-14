@@ -1,8 +1,9 @@
 ---
 title: "Mini Project 3"
 author: "Emily Kim, Dasom An, Janell Lin"
-date: "4/16/2018"
-output: html_document:
+date: "4/15/2018"
+output: 
+  html_document:
   code_folding: hide
 ---
 
