@@ -1,75 +1,30 @@
----
 title: "Mini Project 3"
 author: "Emily Kim, Dasom An, Janell Lin"
 date: "4/16/2018"
-output: html_document:
-  code_folding: hide
+output: 
+  html_document:
+    code_folding: hide
 ---
 
 ```{r}
-<<<<<<< HEAD
-
-library(tidyverse)
-library(macleish)
-
-#Install macleish
-#devtools::install_github("beanumber/macleish")
-
-# Install macleish
-devtools::install_github("beanumber/macleish")
-
-
-
-library(tidyverse)
-library(macleish)
-library (dplyr)
-
-library(sf)
-
-=======
 devtools::install_github("beanumber/macleish")
 library(tidyverse)
 library(macleish)
 library (dplyr)
->>>>>>> da424b27bd62cc3b1e3a7919ccb83a56faf34dbe
 library(sf)
 library(lwgeom)
 ```
 
 ```{r}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> da424b27bd62cc3b1e3a7919ccb83a56faf34dbe
 trails <- macleish_layers[["trails"]] %>%
   mutate(computed_length = st_length(geometry))
 macleish_layers[["trails"]]
 
 trails_1<- trails %>%
-<<<<<<< HEAD
-  group_by(name) %>%
-  summarize(num_segments = n(), 
-            total_length = sum(computed_length)) %>%
-  arrange(desc(total_length))
-
-name <- c('Snowmobile Trail','Eastern Loop','Easy Out', "entry trail","Poplar Hill Road","Porcupine Trail", "Vernal Pool Loop","Western Loop")
-numeric_rating <- c(47.73311, 24.99817, 2.4, 4.0, 21.49414,16.71984,5.4, 27.56704)
-
-difficulty_rating <- data.frame(name, numeric_rating, stringsAsFactors=FALSE)%>%
-  mutate (Difficulty= if_else(as.numeric(numeric_rating)<10, "Easy", ifelse(as.numeric(numeric_rating)<30, "Moderate", "Hard")))
-
-trails_2 <-trails_1  %>%
-  inner_join(difficulty_rating, by = "name")
-
-contours <- macleish_layers[["contours_3m"]] 
-```
-=======
 group_by(name) %>%
 summarize(num_segments = n(),
 total_length = sum(computed_length)) %>%
 arrange(desc(total_length))
->>>>>>> da424b27bd62cc3b1e3a7919ccb83a56faf34dbe
 
 name <- c('Snowmobile Trail','Eastern Loop','Easy Out', "entry trail","Poplar Hill Road","Porcupine Trail", "Vernal Pool Loop","Western Loop")
 numeric_rating <- c(47.73311, 24.99817, 2.4, 4.0, 21.49414,16.71984,5.4, 27.56704)
@@ -77,26 +32,10 @@ numeric_rating <- c(47.73311, 24.99817, 2.4, 4.0, 21.49414,16.71984,5.4, 27.5670
 difficulty_rating <- data.frame(name, numeric_rating, stringsAsFactors=FALSE)%>%
 mutate (Difficulty= if_else(as.numeric(numeric_rating)<10, "Easy", ifelse(as.numeric(numeric_rating)<30, "Moderate", "Hard")))
 
-<<<<<<< HEAD
-
-#elevation
-elevation <- st_read("CONTOURS250K_ARC.shp")
-
-
-library(macleish)
-packageVersion("macleish")
-library(sp)
-
-names(macleish_layers)
-
-library(sf)
-elevation <- st_read("CONTOURS250K_ARC.shp")
-=======
 trails_2 <-trails_1 %>%
 inner_join(difficulty_rating, by = "name")
 
 ```
->>>>>>> da424b27bd62cc3b1e3a7919ccb83a56faf34dbe
 
 ```{r}
 contours <- macleish_layers[["contours_3m"]] %>%
@@ -107,15 +46,11 @@ elevation_trail_xings <- macleish_layers[["trails"]] %>%
   dplyr::select(ELEV_M, ELEV_FT, INDEX_ARC, SHAPE_LEN, geometry, name, color) %>%
   dplyr::group_by(name) %>%
   dplyr::summarise(max = max(ELEV_FT), min = min(ELEV_FT), n = n()) %>%
-<<<<<<< HEAD
-  dplyr::mutate(difference = max - min)%>%
-  dplyr::mutate (Difficulty= if_else(difference<100, "Easy", ifelse(difference<200, "Moderate", "Hard")))
-  
+  dplyr::mutate(difference = max - min)
+```
 
+```{r}
 landmarks<- macleish_layers[["landmarks"]]
-
-
-library (leaflet)
 
 pal <- colorNumeric(
   palette = "blue",
@@ -126,73 +61,6 @@ factpal <- colorFactor(topo.colors(3), palette = c('red', 'orange', 'green'),tra
 require(leaflet)
 
 leaflet()%>%
-  addTiles()%>%
-  addPolylines(data=trails_2, 
-               weight = 5, fillOpacity = 0.5,
-               popup = ~ name, group = "Structures",
-               color = ~factpal(Difficulty))%>%
-  addMarkers(data = macleish_layers[["landmarks"]], 
-             popup = ~ Label, group = "Structures")%>%
-  addPolylines(data = contours, weight = 1, fillOpacity = 0.1, color = ~pal(ELEV_M))
-
-
-
-
-
-
-
-
-
-```
-
-
-Questions:
-1. Cannot plot contours
-2. How to visualize difficulty on the map with two variables
-3. How to remove units
-
-
-4.  including relevant external information in your analysis
-5. develop a heuristic that will classify these (or any other) trails based on their difficulty.
-
-```{r}
-#the_crs <- crs(trails, asText = TRUE)
-=======
-  dplyr::mutate(difference = max - min)
-```
-
-```{r}
-landmarks<- macleish_layers[["landmarks"]]
->>>>>>> da424b27bd62cc3b1e3a7919ccb83a56faf34dbe
-
-pal <- colorNumeric(
-palette = "Blues",
-domain = contours$ELEV_M)
-
-<<<<<<< HEAD
-st_crs(elevation)
-st_crs(trails)
-=======
-factpal <- colorFactor(topo.colors(3), palette = c('red', 'orange', 'green'),trails_2$Difficulty)
->>>>>>> da424b27bd62cc3b1e3a7919ccb83a56faf34dbe
-
-require(leaflet)
-
-<<<<<<< HEAD
-
-
-library(raster)
-
-the_crs <- crs(trails, asText = TRUE)
-elevation_crs <- st_transform(trails, crs = the_crs)
-
-#View(contours)
-```
-
-%>%
-  mutate (Difficulty= if_else(as.numeric(total_length)<1000, "Easy", ifelse(as.numeric(total_length)<2000, "Moderate", "Hard")))
-=======
-leaflet()%>%
  addTiles()%>%
  addPolylines(data=trails_2,
               weight = 5, fillOpacity = 0.5,
@@ -201,22 +69,3 @@ leaflet()%>%
   addMarkers(data = macleish_layers[["landmarks"]],
              popup = ~ Label, group = "Structures")%>%
   addPolylines(data = contours, weight = 1, fillOpacity = 0.1, color = ~pal(ELEV_M))
-
-
-```
-
->>>>>>> da424b27bd62cc3b1e3a7919ccb83a56faf34dbe
-
-
-
-
-
-
-
-
-
-
-
-
-
-
