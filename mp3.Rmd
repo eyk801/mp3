@@ -1,16 +1,10 @@
+---
 title: "Mini Project 3"
 author: "Emily Kim, Dasom An, Janell Lin"
-<<<<<<< HEAD
 date: "4/16/2018"
 output: 
   html_document:
     code_folding: hide
-=======
-date: "4/15/2018"
-output: 
-  html_document:
-  code_folding: hide
->>>>>>> bc78b808817cc0bf255a78c2eb7197526a59f565
 ---
 
 ```{r, message = FALSE, warning = FALSE}
@@ -24,7 +18,7 @@ library(leaflet)
 require(leaflet)
 ```
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, include=FALSE}
 trails <- macleish_layers[["trails"]] %>%
   mutate(computed_length = st_length(geometry))
 macleish_layers[["trails"]]
