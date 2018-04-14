@@ -14,6 +14,8 @@ library(macleish)
 library (dplyr)
 library(sf)
 library(lwgeom)
+library(leaflet)
+require(leaflet)
 ```
 
 ```{r}
@@ -59,7 +61,6 @@ domain = contours$ELEV_M)
 
 factpal <- colorFactor(topo.colors(3), palette = c('red', 'orange', 'green'),trails_2$Difficulty)
 
-require(leaflet)
 
 leaflet()%>%
  addTiles()%>%
@@ -70,7 +71,6 @@ leaflet()%>%
   addMarkers(data = macleish_layers[["landmarks"]],
              popup = ~ Label, group = "Structures")%>%
   addPolylines(data = contours, weight = 1, fillOpacity = 0.1, color = ~pal(ELEV_M))
-
 
 ```
 
