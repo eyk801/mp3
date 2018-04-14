@@ -1,74 +1,43 @@
-dplyr---
+---
 title: "Mini Project 3"
 author: "Emily Kim, Dasom An, Janell Lin"
-date: "4/8/2018"
-output: html_document
+date: "4/16/2018"
+output: html_document:
+  code_folding: hide
 ---
 
 ```{r}
-<<<<<<< HEAD
-<<<<<<< HEAD
-library(tidyverse)
-library(macleish)
-=======
-
-#Install macleish
-#devtools::install_github("beanumber/macleish")
-
-=======
-# Install macleish
 devtools::install_github("beanumber/macleish")
->>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
-
 library(tidyverse)
 library(macleish)
 library (dplyr)
-<<<<<<< HEAD
-
->>>>>>> ca8071ab7d9b03cb0d8859eb10adfe7e84ab723b
-library(sf)
-=======
 library(sf)
 library(lwgeom)
 ```
 
 ```{r}
->>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
-
 trails <- macleish_layers[["trails"]] %>%
   mutate(computed_length = st_length(geometry))
-
 macleish_layers[["trails"]]
 
-head(trails)
-
-plot(macleish_layers[["trails"]])
-
 trails_1<- trails %>%
-  group_by(name) %>%
-  summarize(num_segments = n(), 
-            total_length = sum(computed_length)) %>%
-  arrange(desc(total_length))
-<<<<<<< HEAD
-View (trails)
-=======
-View(trails)
+group_by(name) %>%
+summarize(num_segments = n(),
+total_length = sum(computed_length)) %>%
+arrange(desc(total_length))
 
->>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
+name <- c('Snowmobile Trail','Eastern Loop','Easy Out', "entry trail","Poplar Hill Road","Porcupine Trail", "Vernal Pool Loop","Western Loop")
+numeric_rating <- c(47.73311, 24.99817, 2.4, 4.0, 21.49414,16.71984,5.4, 27.56704)
+
+difficulty_rating <- data.frame(name, numeric_rating, stringsAsFactors=FALSE)%>%
+mutate (Difficulty= if_else(as.numeric(numeric_rating)<10, "Easy", ifelse(as.numeric(numeric_rating)<30, "Moderate", "Hard")))
+
+trails_2 <-trails_1 %>%
+inner_join(difficulty_rating, by = "name")
+
 ```
 
-
 ```{r}
-
-<<<<<<< HEAD
-#elevation
-elevation <- st_read("CONTOURS250K_ARC.shp")
-
-=======
-=======
-names(macleish_layers)
->>>>>>> 64c3bb02d8878e34e88729efc2dc0846c5bfbb73
-
 contours <- macleish_layers[["contours_3m"]] %>%
   dplyr::select(ELEV_M, ELEV_FT, INDEX_ARC, SHAPE_LEN, geometry)
 
@@ -78,48 +47,30 @@ elevation_trail_xings <- macleish_layers[["trails"]] %>%
   dplyr::group_by(name) %>%
   dplyr::summarise(max = max(ELEV_FT), min = min(ELEV_FT), n = n()) %>%
   dplyr::mutate(difference = max - min)
-  
-
-#the_crs <- crs(trails, asText = TRUE)
-
-#st_crs(elevation)
-#st_crs(trails)
-
-<<<<<<< HEAD
-st_crs(elevation)
-st_crs(trails)
-
-#library(sf)
-
-<<<<<<< HEAD
-=======
-library(raster)
->>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
-the_crs <- crs(trails, asText = TRUE)
-elevation_crs <- st_transform(trails, crs = the_crs)
-=======
-#View(contours)
->>>>>>> 64c3bb02d8878e34e88729efc2dc0846c5bfbb73
-
-```
-
-<<<<<<< HEAD
-Data for elevation:
-http://maps-massgis.opendata.arcgis.com/datasets/84ecbf026489446c8562df038c352772_0
-http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip
-```{r}
-##source data
-url <- "http://download.massgis.digital.mass.gov/shapefiles/state/contours250k.zip"
-local_file <- basename(url)
-download.file(url, destfile = local_file)
-<<<<<<< HEAD
-unzip(local_file, exdir = "elevation")
 ```
 
 ```{r}
-dim(elevation)
-packageVersion("macleish")
-names(macleish_layers)
+landmarks<- macleish_layers[["landmarks"]]
+
+pal <- colorNumeric(
+palette = "Blues",
+domain = contours$ELEV_M)
+
+factpal <- colorFactor(topo.colors(3), palette = c('red', 'orange', 'green'),trails_2$Difficulty)
+
+require(leaflet)
+
+leaflet()%>%
+ addTiles()%>%
+ addPolylines(data=trails_2,
+              weight = 5, fillOpacity = 0.5,
+              popup = ~ name, group = "Structures",
+              color = ~factpal(Difficulty))%>%
+  addMarkers(data = macleish_layers[["landmarks"]],
+             popup = ~ Label, group = "Structures")%>%
+  addPolylines(data = contours, weight = 1, fillOpacity = 0.1, color = ~pal(ELEV_M))
+
+
 ```
 
 
@@ -133,14 +84,6 @@ names(macleish_layers)
 
 
 
-=======
-unzip(local_file, exdir = "contours250k")
-```
-=======
->>>>>>> 1bb2015a5e6b02c15658c91f5ffd291063fc8dc4
 
-```{r fig.show="hold", fig.width=3}
-#put all the figures together
-```
 
->>>>>>> ca8071ab7d9b03cb0d8859eb10adfe7e84ab723b
+
