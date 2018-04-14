@@ -6,6 +6,9 @@ output:
   html_document:
     code_folding: hide
 ---
+For Mini Project 3, we decided to look at topic 1 and classify the difficulties of the trails in the Ada and Archibald MacLeish Field Station based on length and elevation.
+
+Throughout this project, we analyzed multiple hiking difficulty standards and came across [this](https://www.nps.gov/shen/planyourvisit/how-to-determine-hiking-difficulty.htm) from the National Park Service. We used this as a guide to help us determine the hiking difficulty of the different trails in MacLeish. We found that all of the MacLeish trails are relatively easy based on the hiking difficulty standard from the National Park Service; so among the trails in MacLeish, we compared  their difficulty in relative to one another based on the length and elevation from our data. Thus, by referencing the National Park Service, we calculated the rating and used this numeric rating to determine the difficulty; since our highest numeric rating was 47, and easy is considered as a rating with less than 50, we had to adjust our scale. Ratings from 0-10 were considered easy, 10-30 were moderate numeric ratings, and hard were ratings higher than 30. 
 
 ```{r, message = FALSE, warning = FALSE}
 devtools::install_github("beanumber/macleish")
@@ -51,7 +54,7 @@ elevation_trail_xings <- macleish_layers[["trails"]] %>%
   dplyr::summarise(max = max(ELEV_FT), min = min(ELEV_FT), n = n()) %>%
   dplyr::mutate(difference = max - min)
 ```
-
+Which Trail Do You Want To Take?
 ```{r, message = FALSE, warning=FALSE}
 landmarks<- macleish_layers[["landmarks"]]
 
@@ -75,17 +78,10 @@ leaflet()%>%
 
 ```
 
+Because we found that all of the trails were considered easy, by the National Park Service’s standards, we came to the conclusion that this is very family friendly for children and grandparents. Since this is friendly for children, we would recommend that the education department at Smith College would collaborate with local schools in the area. MacLeish would be a place for children to interact with nature and learn more about ecology, hydrology, and outdoor education.
 
+Thinking about the resources necessary to implement the recommendation discussed above, we believe that this could be done in a relatively short time: implementing a program with local schools would probably not take too long, perhaps within a semester. The timing of the program could possibly take place in the fall semester or late spring semester for one day, or perhaps once a week depending on the scope of the program. We believe that this would cost little money, especially if there are student volunteers from Smith College willing to help teach students. As for the environmental impact, there could a possibility of increased trash at MacLeish: to prevent this, there could be an implementation of more trash cans in the area so families do not simply throw away their trash outside. The only roadblock we can foresee is transportation, and if there is no mode of transportation it would be difficult to get to the station. 
 
+GitHub repository[^1]
 
-
-
-
-
-
-
-
-
-
-
-
+[^1]:https://github.com/eyk801/mp3.git
