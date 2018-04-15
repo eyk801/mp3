@@ -6,6 +6,10 @@ output:
   html_document:
     code_folding: hide
 ---
+
+
+#**Which Trail Do You Want To Take?**
+
 For Mini Project 3, we decided to look at topic 1 and classify the difficulties of the trails in the Ada and Archibald MacLeish Field Station based on length and elevation.
 
 Throughout this project, we analyzed multiple hiking difficulty standards and came across [this](https://www.nps.gov/shen/planyourvisit/how-to-determine-hiking-difficulty.htm) from the National Park Service. We used this as a guide to help us determine the hiking difficulty of the different trails in MacLeish. We found that all of the MacLeish trails are relatively easy based on the hiking difficulty standard from the National Park Service; so among the trails in MacLeish, we compared  their difficulty in relative to one another based on the length and elevation from our data. Thus, by referencing the National Park Service, we calculated the rating and used this numeric rating to determine the difficulty; since our highest numeric rating was 47, and easy is considered as a rating with less than 50, we had to adjust our scale. Ratings from 0-10 were considered easy, 10-30 were moderate numeric ratings, and hard were ratings higher than 30. 
@@ -51,7 +55,7 @@ elevation_trail_xings <- macleish_layers[["trails"]] %>%
   dplyr::mutate(difference = max - min)
 ```
 
-```{r}
+```{r, warning=FALSE}
 
 # Create new data frame that has the calculated difficulty rating based on formula from the National Park Services
 
@@ -71,7 +75,7 @@ inner_join(difficulty_rating, by = "name")%>%
 ```
 
 
-Which Trail Do You Want To Take?
+### *Nine Different Trails by Difficulty in Macleish* 
 ```{r, message = FALSE, warning=FALSE}
 
 #plot contours, trails, and landmarks
