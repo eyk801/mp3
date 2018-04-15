@@ -12,7 +12,6 @@ output:
 
 For Mini Project 3, we decided to look at topic 1 and classify the difficulties of the trails in the Ada and Archibald MacLeish Field Station based on length and elevation.
 
-Throughout this project, we analyzed multiple hiking difficulty standards and came across [this](https://www.nps.gov/shen/planyourvisit/how-to-determine-hiking-difficulty.htm) from the National Park Service. We used this as a guide to help us determine the hiking difficulty of the different trails in MacLeish. We found that all of the MacLeish trails are relatively easy based on the hiking difficulty standard from the National Park Service; so among the trails in MacLeish, we compared  their difficulty in relative to one another based on the length and elevation from our data. Thus, by referencing the National Park Service, we calculated the rating and used this numeric rating to determine the difficulty; since our highest numeric rating was 47, and easy is considered as a rating with less than 50, we had to adjust our scale. Ratings from 0-10 were considered easy, 10-30 were moderate numeric ratings, and hard were ratings higher than 30. 
 
 ```{r, message = FALSE, warning = FALSE}
 #installing needed packages
@@ -107,10 +106,58 @@ leaflet()%>%
 
 ```
 
-Because we found that all of the trails were considered easy, by the National Park Service’s standards, we came to the conclusion that this is very family friendly for children and grandparents. Since this is friendly for children, we would recommend that the education department at Smith College would collaborate with local schools in the area. MacLeish would be a place for children to interact with nature and learn more about ecology, hydrology, and outdoor education.
 
-Thinking about the resources necessary to implement the recommendation discussed above, we believe that this could be done in a relatively short time: implementing a program with local schools would probably not take too long, perhaps within a semester. The timing of the program could possibly take place in the fall semester or late spring semester for one day, or perhaps once a week depending on the scope of the program. We believe that this would cost little money, especially if there are student volunteers from Smith College willing to help teach students. As for the environmental impact, there could a possibility of increased trash at MacLeish: to prevent this, there could be an implementation of more trash cans in the area so families do not simply throw away their trash outside. The only roadblock we can foresee is transportation, and if there is no mode of transportation it would be difficult to get to the station. 
+**CLEAR/CONCISE DESCRIPTION OF DATA USED** 
 
+To determine the hiking difficulty, we used the difficulty formula from the National Park Services to calculate the numeric rating for each trail in Macleish (https://www.nps.gov/shen/planyourvisit/how-to-determine-hiking-difficulty.htm). The following is the formula from the National Park Services:
+
+Elevation Gain x 2 x distance (in miles). The product's square root is the numerical rating.
+
+Our calculation found that all of the MacLeish trails are relatively easy based on the hiking difficulty standard from the National Park Service. So among the trails in MacLeish, we compared  their difficulty in relation to one another based on the calculated numeric rating. Since our highest numeric rating was 47, and easy is considered as a rating with less than 50, we had to adjust our scale. Ratings from 0-10 were considered easy, 10-30 were considered moderate, and ratings higher than 30 were considered hard. 
+
+We also calculated the time needed to walk through each trail. When the user selects a trail, they can see how much time it would take to complete the trail. We calculated the time needed for each trail based on the paper “Establishing Pedestrian Walking Speeds” published by Portland University (https://www.westernite.org/datacollectionfund/2005/psu_ped_summary.pdf ). We found that the average walking speed for older people is 4.26ft/second and that of younger people is 4.63ft/second. We take the average of the two speeds and determined the average walking speed to be 1.4 meter/second. 
+
+(4.26+4.63)/2=4.445 ft/s
+
+Convert 4.445 ft to meters= 1.4 meters/second
+
+
+**RECOMMENDATION**
+
+All of the trails were considered easy according to the National Park Service’s standards. We conclude that Macleish is very friendly for children and elderly. Since all trails are very short with small change in elevation, Macleish is a suitable field trip destination for age groups ranging from very young (kindergarten) to older (high school) children. We recommend that the education department at Smith collaborate with local schools and organize field trips at the Macleish Field Station. There are not many places in the pioneer valley like MacLeish that offers very young children the chance to interact with nature and learn more about ecology, hydrology, and outdoor education. Macleish also has a lot of unique features to offer. For example, the Bechtel Environmental Classroom is the fifth fully certified Living Building in the United States. Another valuable asset of Macleish is the American Chestnut restoration project.
+
+The maps on the Macleish Field Station website are currently in pdf format. Macleish would be much more accessible if Smith can build an app or website that incorporate this data graphic or an interactive map. This data graphic allow users to easily know the trail difficulty levels, time needed to complete each trail, and which landmark each path can bring them to. This would not only help educators to plan their lessons, but also students and professors who are conducting research. Macleish could collaborate with the students in the computer science and data science department to decrease the cost of building app/website. This would also give students the chance to work on and learn from a real-life project that they can put on their resume.  
+
+
+
+**SHORT DISCUSSION ON RESOURCES NECESSARY**
+
+Thinking about the resources necessary to implement the recommendation discussed above, we believe that the planning of the field trips would be relatively easy. The short and easy trails at Macleish allow students to tour around the station within one day. This means that the trips could be scheduled in a relatively short period of time. The main cost of the field trips would be transportation and lunches.  
+
+As for the website/app building, it might take a month to a semester depending on the level of sophistication Macleish would like to achieve. This would cost little money, especially if Macleish collaborate with Smith students 
+
+As for the environmental impact, there could be increased trash at MacLeish: to prevent this, more trash cans would be needed in the area so visitors do not simply throw away their trash outside. A roadblock we can foresee is transportation. The are no public transportation to the Macleish Field Station, which would be difficult for students without cars to visit. The field station offers vans for Smith students regularly every week, which helps to improve the accessibility of the field station. 
+
+
+
+**LINKS**
 GitHub repository[^1]
 
+Establishing Pedestrian Walking Speeds, Portland State University [^2]
+
+How to Determine Hiking Difficulty, National Park Service [^3]
+
+American Chestnut Restoration Project [^4]
+
+Maps of Macleish Field Station available online [^5]
+
+The Bechtel Environmental Classroom [^6]
+
+
+
 [^1]:https://github.com/eyk801/mp3.git
+[^2]:https://www.westernite.org/datacollectionfund/2005/psu_ped_summary.pdf
+[^3]:https://www.nps.gov/shen/planyourvisit/how-to-determine-hiking-difficulty.htm
+[^4]:https://www.smith.edu/ceeds/macleish_research.php
+[^5]:https://www.smith.edu/ceeds/macleish_maps.php
+[^6]:https://www.smith.edu/ceeds/macleish_bechtel.php
