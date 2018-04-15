@@ -109,13 +109,13 @@ leaflet()%>%
 
 **CLEAR/CONCISE DESCRIPTION OF DATA USED** 
 
-To determine the hiking difficulty, we used the difficulty formula from the National Park Services to calculate the numeric rating for each trail in Macleish (https://www.nps.gov/shen/planyourvisit/how-to-determine-hiking-difficulty.htm). The following is the formula from the National Park Services:
+To determine the hiking difficulty, we used the difficulty formula from the National Park Services to calculate the numeric rating for each trail in [Macleish](https://www.nps.gov/shen/planyourvisit/how-to-determine-hiking-difficulty.htm). The following is the formula from the National Park Services:
 
 Elevation Gain x 2 x distance (in miles). The product's square root is the numerical rating.
 
 Our calculation found that all of the MacLeish trails are relatively easy based on the hiking difficulty standard from the National Park Service. So among the trails in MacLeish, we compared  their difficulty in relation to one another based on the calculated numeric rating. Since our highest numeric rating was 47, and easy is considered as a rating with less than 50, we had to adjust our scale. Ratings from 0-10 were considered easy, 10-30 were considered moderate, and ratings higher than 30 were considered hard. 
 
-We also calculated the time needed to walk through each trail. When the user selects a trail, they can see how much time it would take to complete the trail. We calculated the time needed for each trail based on the paper “Establishing Pedestrian Walking Speeds” published by Portland University (https://www.westernite.org/datacollectionfund/2005/psu_ped_summary.pdf ). We found that the average walking speed for older people is 4.26ft/second and that of younger people is 4.63ft/second. We take the average of the two speeds and determined the average walking speed to be 1.4 meter/second. 
+We also calculated the time needed to walk through each trail. When the user selects a trail, they can see how much time it would take to complete the trail. We calculated the time needed for each trail based on the paper “Establishing Pedestrian Walking Speeds” published by [Portland University](https://www.westernite.org/datacollectionfund/2005/psu_ped_summary.pdf ). We found that the average walking speed for older people is 4.26ft/second and that of younger people is 4.63ft/second. We take the average of the two speeds and determined the average walking speed to be 1.4 meter/second. 
 
 (4.26+4.63)/2=4.445 ft/s
 
@@ -141,6 +141,7 @@ As for the environmental impact, there could be increased trash at MacLeish: to 
 
 
 **LINKS**
+
 GitHub repository[^1]
 
 Establishing Pedestrian Walking Speeds, Portland State University [^2]
